@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+        }
+        .user-entry {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛡️ Admin View – Logged Users</h1>
+    <div id="users"></div>
+
+    <script>
+        const users = JSON.parse(localStorage.getItem("allLoginData")) || [];
+        const userDiv = document.getElementById("users");
+
+        if (users.length === 0) {
+            userDiv.innerHTML = "<p>No users have logged in yet.</p>";
+        } else {
+            users.forEach((user, index) => {
+                userDiv.innerHTML += `
+                    <div class="user-entry">
+                        <p><b>User #${index + 1}</b></p>
+                        <p><b>Name:</b> ${user.name}</p>
+                        <p><b>Email:</b> ${user.email}</p>
+                        <p><b>Password:</b> ${user.password}</p>
+                    </div>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
